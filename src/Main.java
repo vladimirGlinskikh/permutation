@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,22 +12,21 @@ public class Main {
         System.out.println(timeConsumed);
     }
 
-    static ArrayList<String> permutation(String string) {
+    static List<String> permutation(String string) {
         if (string.length() == 1) {
-            ArrayList<String> vector = new ArrayList<>();
-            vector.add(string);
-            return vector;
+            List<String> list = new ArrayList<>();
+            list.add(string);
+            return list;
         }
         char startWord = string.charAt(0);
-        ArrayList<String> endWord = permutation(string.substring(1));
-        ArrayList<String> newEndWord = new ArrayList<>();
-        for (String endW : endWord) {
-            for (int i = 0; i <= endW.length(); i++) {
-                if (endW.substring(0, i).endsWith(String.valueOf(startWord)))
+        List<String> endWord = permutation(string.substring(1));
+        List<String> newEndWord = new ArrayList<>();
+        for (String s : endWord) {
+            for (int i = 0; i <= s.length(); i++) {
+                if (s.substring(0, i).endsWith(String.valueOf(startWord)))
                     break;
-                newEndWord.add(endW.substring(0, i) + String.valueOf(startWord) +
-                        endW.substring(i));
-
+                newEndWord.add(s.substring(0, i) + String.valueOf(startWord) +
+                        s.substring(i));
             }
         }
         return newEndWord;
